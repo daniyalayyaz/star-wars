@@ -16,7 +16,11 @@ class CharacterDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: _buildAppBarTitle()),
+      appBar: AppBar(
+        title: _buildAppBarTitle(),
+        backgroundColor: Colors.teal,
+        foregroundColor: Colors.white,
+      ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16),
         child: Column(
@@ -47,7 +51,9 @@ class CharacterDetailScreen extends StatelessWidget {
       // Handle Character details
       Character character = resource as Character;
       widgets.addAll([
-        Text('Name: ${character.name}'),
+        Text(
+          'Name: ${character.name}',
+        ),
         Text('Height: ${character.height}'),
         Text('Mass: ${character.mass}'),
         Text('Hair Color: ${character.hairColor}'),
@@ -163,7 +169,10 @@ class CharacterDetailScreen extends StatelessWidget {
       future: _fetchDetails(urls, resourceType),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: Padding(
+            padding: EdgeInsets.symmetric(vertical: 20.0),
+            child: CircularProgressIndicator(color: Colors.teal,),
+          ));
         } else if (snapshot.hasError) {
           return Text('Error loading ${resourceTypeToString(resourceType)}');
         } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
@@ -203,13 +212,17 @@ class CharacterDetailScreen extends StatelessWidget {
                         _navigateToDetail(context, detail);
                       },
                       child: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.teal[400],
+                            borderRadius: BorderRadius.circular(20)),
                         padding: EdgeInsets.all(8),
-                        margin: EdgeInsets.only(right: 8),
-                        color: Colors.blueAccent,
+                        margin: EdgeInsets.all(8),
                         child: Center(
                           child: Text(
                             displayText,
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
                           ),
                         ),
                       ),

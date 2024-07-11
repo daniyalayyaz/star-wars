@@ -23,7 +23,9 @@ class _PeopleScreenState extends State<PeopleScreen> {
     try {
       final response = await ApiService().fetchData(ResourceType.characters);
       final List<dynamic> results = response['data'];
-      return results.map((characterJson) => Character.fromJson(characterJson)).toList();
+      return results
+          .map((characterJson) => Character.fromJson(characterJson))
+          .toList();
     } catch (e) {
       if (e is FetchDataException) {
         throw e; // Rethrow the FetchDataException for proper error handling
@@ -36,7 +38,11 @@ class _PeopleScreenState extends State<PeopleScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Star Wars Characters')),
+      appBar: AppBar(
+        title: const Text('Star Wars Characters'),
+        backgroundColor: Colors.teal,
+        foregroundColor: Colors.white,
+      ),
       body: FutureBuilder<List<Character>>(
         future: _charactersFuture,
         builder: (context, snapshot) {
