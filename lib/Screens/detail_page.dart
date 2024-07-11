@@ -36,9 +36,16 @@ class CharacterDetailScreen extends StatelessWidget {
     String title = '';
     if (resource is Character) {
       title = (resource as Character).name;
-    } else if (resource is String) {
-      // Handle cases where the resource is a string (e.g., film title)
-      title = resource;
+    } else if (resource is Film) {
+      title = (resource as Film).title;
+    } else if (resource is Species) {
+      title = (resource as Species).name;
+    } else if (resource is Vehicle) {
+      title = (resource as Vehicle).name;
+    } else if (resource is Starship) {
+      title = (resource as Starship).name;
+    } else if (resource is Planet) {
+      title = (resource as Planet).name;
     }
     return Text(title);
   }
@@ -169,9 +176,12 @@ class CharacterDetailScreen extends StatelessWidget {
       future: _fetchDetails(urls, resourceType),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: Padding(
+          return const Center(
+              child: Padding(
             padding: EdgeInsets.symmetric(vertical: 20.0),
-            child: CircularProgressIndicator(color: Colors.teal,),
+            child: CircularProgressIndicator(
+              color: Colors.teal,
+            ),
           ));
         } else if (snapshot.hasError) {
           return Text('Error loading ${resourceTypeToString(resourceType)}');

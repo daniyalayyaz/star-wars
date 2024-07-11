@@ -13,6 +13,9 @@ class ApiService {
           .get(Uri.parse(url ?? _getUrlForResourceType(resourceType)));
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
+        if (url != null) {
+          return data;
+        }
         switch (resourceType) {
           case ResourceType.characters:
             Map<String, dynamic> characterData = data;
