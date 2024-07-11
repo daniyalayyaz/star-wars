@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../Models/characters.dart';
-import '../Screens/character_detail_page.dart';
+import '../Screens/detail_page.dart';
 
 class CharacterGridTile extends StatelessWidget {
   final Character character;

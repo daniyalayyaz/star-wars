@@ -75,7 +75,7 @@ class CharacterDetailScreen extends StatelessWidget {
         Text('Director: ${film.director}'),
         Text('Producer: ${film.producer}'),
         Text('Release Date: ${film.releaseDate}'),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         _buildNestedListView(context, film.characters, ResourceType.characters),
         _buildNestedListView(context, film.planets, ResourceType.planets),
         _buildNestedListView(context, film.species, ResourceType.species),
@@ -97,7 +97,7 @@ class CharacterDetailScreen extends StatelessWidget {
         Text('Cargo Capacity: ${vehicle.cargoCapacity}'),
         Text('Consumables: ${vehicle.consumables}'),
         Text('Vehicle Class: ${vehicle.vehicleClass}'),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         _buildNestedListView(context, vehicle.films, ResourceType.films),
       ]);
     } else if (resource is Planet) {
@@ -113,7 +113,7 @@ class CharacterDetailScreen extends StatelessWidget {
         Text('Terrain: ${planet.terrain}'),
         Text('Surface Water: ${planet.surfaceWater}'),
         Text('Population: ${planet.population}'),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         _buildNestedListView(context, planet.films, ResourceType.films),
       ]);
     } else if (resource is Species) {
@@ -129,9 +129,27 @@ class CharacterDetailScreen extends StatelessWidget {
         Text('Eye Colors: ${species.eyeColors}'),
         Text('Average Life Span: ${species.averageLifespan}'),
         Text('Home World: ${species.homeworld}'),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         _buildNestedListView(context, species.films, ResourceType.films),
         _buildNestedListView(context, species.people, ResourceType.characters),
+      ]);
+    } else if (resource is Starship) {
+      // Handle Character details
+      Starship starship = resource as Starship;
+      widgets.addAll([
+        Text('Name: ${starship.name}'),
+        Text('Manufacture: ${starship.manufacturer}'),
+        Text('Cost in credit: ${starship.costInCredits}'),
+        Text('Length: ${starship.length}'),
+        Text('Max at atmosphere speed: ${starship.maxAtmospheringSpeed}'),
+        Text('Crew: ${starship.crew}'),
+        Text('Passengers: ${starship.passengers}'),
+        Text('Cargo Capacity: ${starship.cargoCapacity}'),
+        Text('Hyper Drive Rating: ${starship.hyperdriveRating}'),
+        Text('Mglt: ${starship.mglt}'),
+        Text('Starship Class: ${starship.starshipClass}'),
+        const SizedBox(height: 10),
+        _buildNestedListView(context, starship.films, ResourceType.films),
       ]);
     }
 

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../Services/api_service.dart';
 import '../Models/characters.dart';
 import '../Utils/custom_exception.dart';
-import '../Screens/character_detail_page.dart';
+import 'detail_page.dart';
 import '../Widgets/character_grid_tile.dart';
 
 class PeopleScreen extends StatefulWidget {
