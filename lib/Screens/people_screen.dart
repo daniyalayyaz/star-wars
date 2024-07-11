@@ -28,7 +28,7 @@ class _PeopleScreenState extends State<PeopleScreen> {
           .toList();
     } catch (e) {
       if (e is FetchDataException) {
-        throw e; // Rethrow the FetchDataException for proper error handling
+        throw e;
       } else {
         throw FetchDataException('Error fetching characters: $e');
       }

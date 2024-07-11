@@ -9,8 +9,7 @@ import '../Services/api_service.dart';
 import '../Utils/custom_exception.dart';
 
 class CharacterDetailScreen extends StatelessWidget {
-  final dynamic resource; // Use dynamic to handle different resource types
-
+  final dynamic resource;
   CharacterDetailScreen({required this.resource});
 
   @override
@@ -31,7 +30,6 @@ class CharacterDetailScreen extends StatelessWidget {
     );
   }
 
-  // Dynamically build the AppBar title based on the resource type
   Widget _buildAppBarTitle() {
     String title = '';
     if (resource is Character) {
@@ -50,12 +48,10 @@ class CharacterDetailScreen extends StatelessWidget {
     return Text(title);
   }
 
-  // Dynamically build detail widgets based on the resource type
   List<Widget> _buildDetailWidgets(BuildContext context) {
     List<Widget> widgets = [];
 
     if (resource is Character) {
-      // Handle Character details
       Character character = resource as Character;
       widgets.addAll([
         Text(
@@ -79,7 +75,6 @@ class CharacterDetailScreen extends StatelessWidget {
             context, character.starships, ResourceType.starships),
       ]);
     } else if (resource is Film) {
-      // Handle Character details
       Film film = resource as Film;
       widgets.addAll([
         Text('Title: ${film.title}'),
@@ -96,7 +91,6 @@ class CharacterDetailScreen extends StatelessWidget {
         _buildNestedListView(context, film.starships, ResourceType.starships),
       ]);
     } else if (resource is Vehicle) {
-      // Handle Character details
       Vehicle vehicle = resource as Vehicle;
       widgets.addAll([
         Text('Name: ${vehicle.name}'),
@@ -114,7 +108,6 @@ class CharacterDetailScreen extends StatelessWidget {
         _buildNestedListView(context, vehicle.films, ResourceType.films),
       ]);
     } else if (resource is Planet) {
-      // Handle Character details
       Planet planet = resource as Planet;
       widgets.addAll([
         Text('Name: ${planet.name}'),
@@ -130,7 +123,6 @@ class CharacterDetailScreen extends StatelessWidget {
         _buildNestedListView(context, planet.films, ResourceType.films),
       ]);
     } else if (resource is Species) {
-      // Handle Character details
       Species species = resource as Species;
       widgets.addAll([
         Text('Name: ${species.name}'),
@@ -147,7 +139,6 @@ class CharacterDetailScreen extends StatelessWidget {
         _buildNestedListView(context, species.people, ResourceType.characters),
       ]);
     } else if (resource is Starship) {
-      // Handle Character details
       Starship starship = resource as Starship;
       widgets.addAll([
         Text('Name: ${starship.name}'),
@@ -169,7 +160,6 @@ class CharacterDetailScreen extends StatelessWidget {
     return widgets;
   }
 
-  // Build a nested list view for related resources
   Widget _buildNestedListView(
       BuildContext context, List<String> urls, ResourceType resourceType) {
     return FutureBuilder<List<dynamic>>(
@@ -247,7 +237,6 @@ class CharacterDetailScreen extends StatelessWidget {
     );
   }
 
-  // Fetch details for related resources
   Future<List<dynamic>> _fetchDetails(
       List<String> urls, ResourceType resourceType) async {
     List<dynamic> details = [];
@@ -283,7 +272,6 @@ class CharacterDetailScreen extends StatelessWidget {
     return details;
   }
 
-  // Navigate to detail screen for nested resources
   void _navigateToDetail(BuildContext context, dynamic detail) {
     Navigator.push(
       context,
@@ -294,7 +282,6 @@ class CharacterDetailScreen extends StatelessWidget {
   }
 }
 
-// Helper function to convert ResourceType enum to string
 String resourceTypeToString(ResourceType type) {
   switch (type) {
     case ResourceType.characters:
